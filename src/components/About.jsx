@@ -1,147 +1,16 @@
-import { motion } from "framer-motion";
-import { Calendar, Briefcase, GraduationCap, Database, Code, Award } from "lucide-react";
+import { ArrowDownRight, Code2, Database, Layers3 } from 'lucide-react';
+import Reveal, { SectionHeading } from '@/components/Reveal';
 
-const About = () => {
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (custom) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: custom * 0.1, duration: 0.5 },
-    }),
-  };
+const experience = [
+  { period: '2023 — NOW', role: 'Full Stack Developer', company: 'Freelance', icon: Code2 },
+  { period: '2021 — 2025', role: 'IT Officer', company: 'ONDER Organization', icon: Layers3 },
+  { period: '2020 — 2021', role: 'Data Officer', company: 'SHAFAQ Organization', icon: Database },
+];
 
-  return (
-    <div className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUpVariants}
-          custom={0}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <motion.div
-            className="relative"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUpVariants}
-            custom={1}
-          >
-            <div className="relative overflow-hidden rounded-lg border border-primary/10 shadow-xl">
-              <img
-                className="w-full h-[40vh] md:h-[50vh] object-cover"
-                alt="Professional workspace"
-                src="https://images.unsplash.com/photo-1698945298361-365595d400eb"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
-
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="flex flex-wrap gap-4">
-                  <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm">
-                    <Calendar size={16} className="text-primary" />
-                    <span>4+ Years Experience</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="space-y-8">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeInUpVariants}
-              custom={2}
-            >
-              <h3 className="text-2xl font-bold mb-4">Who am I?</h3>
-              <p className="text-muted-foreground mb-4">
-                I'm a graduate of the College of Information Engineering with a strong passion for
-                full-stack web development and modern UI/UX design. I specialize in creating
-                end-to-end digital solutions, from database design and backend APIs to responsive
-                frontend interfaces.
-              </p>
-              <p className="text-muted-foreground">
-                My expertise spans across both frontend and backend technologies including React,
-                JavaScript, PHP Laravel, MySQL, and modern CSS frameworks. I'm always eager to learn
-                emerging technologies and transform innovative ideas into functional digital solutions.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Experience Section */}
-        <motion.div
-          className="mt-20"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUpVariants}
-          custom={3}
-        >
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-4">Experience</h3>
-            <div className="w-16 h-1 bg-primary mx-auto"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Code size={24} className="text-primary" />
-              </div>
-              <h4 className="font-semibold text-lg mb-2">
-                Full Stack Developer
-              </h4>
-              <p className="text-sm text-muted-foreground mb-1">
-                Freelance
-              </p>
-              <p className="text-xs text-muted-foreground">
-                2023 - Present
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Briefcase size={24} className="text-primary" />
-              </div>
-              <h4 className="font-semibold text-lg mb-2">
-                IT Officer
-              </h4>
-              <p className="text-sm text-muted-foreground mb-1">
-                ONDER Organization
-              </p>
-              <p className="text-xs text-muted-foreground">
-                2021 - 2025 (In Progress)
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-card border border-border/50 hover:border-primary/20 transition-colors">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <Database size={24} className="text-primary" />
-              </div>
-              <h4 className="font-semibold text-lg mb-2">
-                Data Officer
-              </h4>
-              <p className="text-sm text-muted-foreground mb-1">
-                SHAFAQ Organization
-              </p>
-              <p className="text-xs text-muted-foreground">
-                2020 - 2021
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
-export default About;
+export default function About() {
+  return <div className="section-shell about-section"><div className="shell">
+    <SectionHeading number="02" label="A little context">I think in systems.<br /><em>I build for people.</em></SectionHeading>
+    <div className="about-grid"><Reveal className="about-statement"><span className="giant-mark">“</span><p>I care about the space where <strong>engineering, design, and human needs</strong> meet.</p><ArrowDownRight size={34} strokeWidth={1} /></Reveal><Reveal className="about-copy" delay={.1}><p>I’m an Information Engineering graduate and full stack developer. My work moves comfortably between interface details, backend logic, databases, and the practical questions that turn software into something useful.</p><p>I enjoy simplifying complex workflows, making products feel effortless, and learning whatever the next challenge calls for.</p><div className="principles"><span><i>01</i> Clarity over noise</span><span><i>02</i> Details build trust</span><span><i>03</i> Ship, learn, improve</span></div></Reveal></div>
+    <div className="experience-list"><p className="eyebrow">EXPERIENCE</p>{experience.map(({ period, role, company, icon: Icon }, index) => <Reveal className="experience-row" key={role} delay={index * .05}><span className="mono">{period}</span><div className="experience-title"><Icon size={20} /><h3>{role}</h3></div><span>{company}</span><ArrowDownRight size={22} /></Reveal>)}</div>
+  </div></div>;
+}

@@ -1,237 +1,37 @@
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/components/ui/use-toast';
+import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import { ArrowUpRight, CheckCircle2, Loader2, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
+import Reveal from '@/components/Reveal';
 
-const Contact = () => {
-  const { toast } = useToast();
-  const formRef = useRef();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const contactLinks = [
+  { label: 'Email', value: 'omar.yasser.mosa@gmail.com', href: 'mailto:omar.yasser.mosa@gmail.com', icon: Mail },
+  { label: 'WhatsApp', value: '+963 940 046 997', href: 'https://wa.me/963940046997', icon: MessageCircle },
+  { label: 'Location', value: 'Aleppo, Syria', icon: MapPin },
+];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    emailjs.sendForm(
-      'service_x4vpk3b',     // ✅ بدّله بخدمة إيميلك
-      'template_42kuufj',    // ✅ بدّله بالتيمبلت الخاص بك
-      formRef.current,
-      'LOAbQxJ9yC_jAwIrG'      // ✅ بدّله بمفتاحك العام
-    ).then(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setIsSubmitting(false);
-    }).catch((error) => {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive"
-      });
+export default function Contact() {
+  const formRef = useRef(null);
+  const [state, setState] = useState('idle');
+  const submit = async (event) => {
+    event.preventDefault();
+    setState('sending');
+    try {
+      await emailjs.sendForm('service_x4vpk3b', 'template_42kuufj', formRef.current, 'LOAbQxJ9yC_jAwIrG');
+      formRef.current.reset();
+      setState('sent');
+    } catch (error) {
       console.error(error);
-      setIsSubmitting(false);
-    });
-  };
-
-  const fadeInUpVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (custom) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: custom * 0.1, duration: 0.5 }
-    })
-  };
-
-  const contactInfo = [
-    {
-      icon: <Mail className="h-6 w-6 text-primary" />,
-      title: 'Email',
-      value: 'omar.yasser.mosa@gmail.com',
-      link: 'mailto:omar.yasser.mosa@gmail.com',
-      isClickable: true,
-    },
-    {
-      icon: <Phone className="h-6 w-6 text-primary" />,
-      title: 'Phone',
-      value: '+963940046997',
-      link: 'https://wa.me/963940046997',
-      isClickable: true,
-    },
-    {
-      icon: <MapPin className="h-6 w-6 text-primary" />,
-      title: 'Location',
-      value: 'Syria, Alatarep',
-      isClickable: false,
+      setState('error');
     }
-  ];
-
-  return (
-    <div className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-primary/5 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-primary/10 rounded-full blur-3xl transform translate-x-1/4 translate-y-1/4"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          className="text-center mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={fadeInUpVariants}
-          custom={0}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out to me through any of the channels below.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          <motion.div 
-            className="lg:col-span-2 space-y-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUpVariants}
-            custom={1}
-          >
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <p className="text-muted-foreground mb-8">
-                I'm always open to discussing new projects, ideas, or opportunities.
-              </p>
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-medium">{item.title}</h4>
-                      {item.isClickable ? (
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-muted-foreground">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="lg:col-span-3"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUpVariants}
-            custom={2}
-          >
-            <div className="bg-card rounded-xl p-8 border border-border shadow-sm">
-              <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">Your Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="Enter Your Name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">Your Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="Enter Your Gmail"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Project Inquiry"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    placeholder="Hello, I'd like to talk about..."
-                  />
-                </div>
-
-                <Button type="submit" className="w-full sm:w-auto rounded-lg" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
-                    </>
-                  )}
-                </Button>
-              </form>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Contact;
+  };
+  return <div className="section-shell contact-section"><div className="shell contact-layout">
+    <Reveal className="contact-intro"><p className="eyebrow"><span>04 /</span> Start a conversation</p><h2>Let’s make<br />something <em>matter.</em></h2><p>Have a product idea, a complex workflow, or a team that needs another thoughtful builder? Tell me about it.</p><a className="contact-email" href="mailto:omar.yasser.mosa@gmail.com">omar.yasser.mosa@gmail.com <ArrowUpRight /></a><div className="contact-list">{contactLinks.map(({ label, value, href, icon: Icon }) => { const content = <><Icon size={18} /><span><small>{label}</small>{value}</span>{href && <ArrowUpRight size={16} />}</>; return href ? <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">{content}</a> : <div key={label}>{content}</div>; })}</div></Reveal>
+    <Reveal className="contact-form-card" delay={.12}><div className="form-top"><span className="status-dot" /><span className="mono">AVAILABLE FOR SELECT PROJECTS</span></div><form ref={formRef} onSubmit={submit}>
+      <div className="field-row"><label><span>Your name</span><input name="name" autoComplete="name" placeholder="Omar" required /></label><label><span>Email address</span><input type="email" name="email" autoComplete="email" placeholder="you@company.com" required /></label></div>
+      <label><span>What are you building?</span><input name="subject" placeholder="A product, platform, or fresh idea" required /></label>
+      <label><span>Tell me a little more</span><textarea name="message" rows="5" placeholder="Goals, timeline, and where you need help..." required /></label>
+      <button className="button button-primary submit-button" type="submit" disabled={state === 'sending'}>{state === 'sending' ? <><Loader2 className="spin" size={18} /> Sending...</> : state === 'sent' ? <><CheckCircle2 size={18} /> Message sent</> : <>Send the brief <Send size={18} /></>}</button>
+      {state === 'error' && <p className="form-error" role="alert">The message didn’t go through. Please email me directly and I’ll reply soon.</p>}
+    </form></Reveal>
+  </div></div>;
+}

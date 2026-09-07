@@ -1,6 +1,5 @@
-
-import { useState, useEffect } from 'react';
-import { Toaster } from '@/components/ui/toaster';
+import { useEffect, useState } from 'react';
+import { MotionConfig, motion, useScroll, useSpring } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -8,73 +7,36 @@ import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import BackToTop from '@/components/BackToTop';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 
-function App() {
+function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
-  const [scrollY, setScrollY] = useState(0);
-
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      
-      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
-      
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (!element) continue;
-        
-        const rect = element.getBoundingClientRect();
-        const offset = 200;
-        
-        if (rect.top <= offset && rect.bottom >= offset) {
-          setActiveSection(section);
-          break;
-        }
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
+    }, { rootMargin: '-15% 0px -60% 0px' });
+    document.querySelectorAll('main > section').forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
-
   return (
-    <ErrorBoundary>
-      <ThemeProvider>
-        <div className="min-h-screen bg-background">
-          <Navbar activeSection={activeSection} scrollY={scrollY} />
-
-          <main>
-            <section id="home">
-              <Hero />
-            </section>
-
-            <section id="about">
-              <About />
-            </section>
-
-            <section id="projects">
-              <Projects />
-            </section>
-
-            <section id="skills">
-              <Skills />
-            </section>
-
-            <section id="contact">
-              <Contact />
-            </section>
-          </main>
-
-          <Footer />
-          <BackToTop />
-          <Toaster />
-        </div>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <MotionConfig reducedMotion="user">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <motion.div className="scroll-progress" style={{ scaleX: progress }} aria-hidden="true" />
+      <Navbar activeSection={activeSection} />
+      <main id="main-content" tabIndex={-1}>
+        <section id="home" aria-label="Introduction"><Hero /></section>
+        <section id="projects" aria-label="Selected projects"><Projects /></section>
+        <section id="about" aria-label="About Omar"><About /></section>
+        <section id="skills" aria-label="Skills and expertise"><Skills /></section>
+        <section id="contact" aria-label="Contact"><Contact /></section>
+      </main>
+      <Footer />
+    </MotionConfig>
   );
 }
-
-export default App;
+export default function App() {
+  return <ErrorBoundary><ThemeProvider><Portfolio /></ThemeProvider></ErrorBoundary>;
+}
