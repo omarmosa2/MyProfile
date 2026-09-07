@@ -1,10 +1,37 @@
-import { ArrowDownRight, Code2, Database, Layers3 } from 'lucide-react';
+import { ArrowDownRight, Code2, Database, Layers3, Monitor, Users } from 'lucide-react';
 import Reveal, { SectionHeading } from '@/components/Reveal';
 
 const experience = [
-  { period: '2023 — NOW', role: 'Full Stack Developer', company: 'Freelance', icon: Code2 },
-  { period: '2021 — 2025', role: 'IT Officer', company: 'ONDER Organization', icon: Layers3 },
-  { period: '2020 — 2021', role: 'Data Officer', company: 'SHAFAQ Organization', icon: Database },
+  {
+    period: '2024 — 2026',
+    role: 'Full Stack Developer',
+    company: 'Freelance',
+    icon: Code2,
+  },
+  {
+    period: '2024 — 2026',
+    role: 'IT Officer',
+    company: 'Al-Rowad for Cooperation and Development',
+    icon: Layers3,
+  },
+  {
+    period: '2022 — 2023',
+    role: 'Data Entry',
+    company: 'Doctors of the World',
+    icon: Database,
+  },
+  {
+    period: '2022 — 2023',
+    role: 'ICDL Trainer',
+    company: 'Al-Rowad for Cooperation and Development',
+    icon: Monitor,
+  },
+  {
+    period: '2022',
+    role: 'Health Awareness Team Leader',
+    company: 'Humanitarian Relief Foundation',
+    icon: Users,
+  },
 ];
 
 export default function About() {

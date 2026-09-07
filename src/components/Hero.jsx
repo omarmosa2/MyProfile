@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="visual-orbit" aria-hidden="true" />
         <motion.div className="portrait-frame" style={reduced ? {} : { rotateX, rotateY }}>
           <div className="portrait-topline mono"><span>THE HUMAN BEHIND THE CODE</span><span>01 — OM</span></div>
-          <div className="portrait-image"><img src="/images/photo.jpg" alt="Omar Yasser Mosa" width="696" height="928" fetchPriority="high" /><div className="portrait-shade" /><div className="portrait-caption"><span>Developer by profession.<br />Creator at heart.</span><ArrowDownRight size={32} strokeWidth={1} /></div></div>
+          <div className="portrait-image"><img src="/images/photo.jpg" alt="Omar Yasser Mosa" width="696" height="928" fetchpriority="high" /><div className="portrait-shade" /><div className="portrait-caption"><span>Developer by profession.<br />Creator at heart.</span><ArrowDownRight size={32} strokeWidth={1} /></div></div>
           <span className="frame-corner corner-tl" /><span className="frame-corner corner-br" />
         </motion.div>
         <div className="floating-code" aria-hidden="true"><div className="code-icon"><Code2 size={23} /></div><div><span className="mono">IDEA → CODE → EXPERIENCE</span><p>Built with purpose<span className="code-caret">_</span></p></div></div>

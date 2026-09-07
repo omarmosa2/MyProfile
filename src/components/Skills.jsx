@@ -3,7 +3,7 @@ import { Braces, Database, Palette, Server, Sparkles } from 'lucide-react';
 import Reveal, { SectionHeading } from '@/components/Reveal';
 
 const expertise = [
-  { number: '01', title: 'Front-end craft', icon: Braces, text: 'Responsive interfaces with deliberate motion, strong hierarchy, and accessible interaction.', tools: ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'HTML & CSS'] },
+  { number: '01', title: 'Front-end', icon: Braces, text: 'Responsive interfaces with deliberate motion, strong hierarchy, and accessible interaction.', tools: ['React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'HTML & CSS'] },
   { number: '02', title: 'Back-end systems', icon: Server, text: 'Reliable APIs and application logic structured for clarity, performance, and growth.', tools: ['Laravel', 'PHP', 'Electron', 'REST APIs'] },
   { number: '03', title: 'Data & architecture', icon: Database, text: 'Practical data models that keep products organized, useful, and easy to maintain.', tools: ['MySQL', 'SQLite', 'Data structures', 'Algorithms'] },
   { number: '04', title: 'Product thinking', icon: Palette, text: 'Turning requirements into coherent flows with a careful eye for UI and UX decisions.', tools: ['Figma', 'Responsive design', 'Prototyping', 'Problem solving'] },
