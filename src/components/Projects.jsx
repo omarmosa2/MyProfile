@@ -20,11 +20,12 @@ const projects = [
     id: 2,
     title: "pharmadesk",
     description:
-      "A comprehensive desktop application for dental clinics that streamlines patient management, appointment scheduling, treatment tracking, and billing. Features an intuitive dashboard, detailed reports, and a modern responsive interface.",
+      "A comprehensive desktop pharmacy management and POS application that simplifies sales, inventory control, debts, expenses, reports, licensing, and backups. Features barcode scanning, secure access, real-time stock tracking, profit analytics, and a modern Arabic interface.",
     tags: ["ELECTRON", "TYPESCRIPT", "SQLITE", "TAILWIND"],
     image: "pharmadesk",
     imagesrc: "",
-    imageAlt: "Dental clinic management system with dashboard and reports",
+    imageAlt:
+      "Pharmacy POS and inventory management system with dashboard and reports",
     liveLink: "",
     githubLink: "",
     featured: true,
@@ -33,11 +34,12 @@ const projects = [
     id: 3,
     title: "mcms-main",
     description:
-      "A comprehensive desktop application for dental clinics that streamlines patient management, appointment scheduling, treatment tracking, and billing. Features an intuitive dashboard, detailed reports, and a modern responsive interface.",
-    tags: ["ELECTRON", "TYPESCRIPT", "SQLITE", "TAILWIND"],
-    image: "pharmadesk",
+      "A comprehensive medical center management system that streamlines patient management, appointment scheduling, medical records, billing, payments, staff administration, and financial operations. Features role-based access control, detailed reports, multi-clinic support, and a modern responsive Arabic interface.",
+    tags: ["LARAVEL", "REACT", "MYSQL", "TAILWIND"],
+    image: "mcms",
     imagesrc: "",
-    imageAlt: "Dental clinic management system with dashboard and reports",
+    imageAlt:
+      "Medical center management system with patient records, appointments, billing, dashboard, and operational reports",
     liveLink: "",
     githubLink: "",
     featured: true,
@@ -95,23 +97,8 @@ const projects = [
     imageAlt: "Personal finance management application interface",
     liveLink: "",
     githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 8,
-    title: "Car Shop Showcase",
-    description:
-      "A car showcase web app where users can view various car models with info cards. Built using React and styled manually with CSS.",
-    tags: ["HTML", "CSS", "JAVASCRIPT"],
-    image: "carshop",
-    imagesrc: "",
-    imageAlt: "Car showcase website with model cards",
-    liveLink: "",
-    githubLink: "",
     featured: true,
   },
-
   {
     id: 9,
     title: "Hospital Web",
@@ -122,7 +109,7 @@ const projects = [
     imageAlt: "Hospital website for appointments, doctors, and departments",
     liveLink: "",
     githubLink: "",
-    featured: false,
+    featured: true,
   },
 
   {
@@ -135,128 +122,9 @@ const projects = [
     imageAlt: "Online food ordering application interface",
     liveLink: "",
     githubLink: "",
-    featured: false,
+    featured: true,
   },
-
-  {
-    id: 11,
-    title: "React Food App",
-    description:
-      "An interactive food ordering app built with React that allows users to browse menus, add items to a cart, and place orders with a modern and responsive design.",
-    tags: ["REACT", "CSS", "JAVASCRIPT"],
-    image: "react-food",
-    imageAlt: "React food ordering application with cart and menu browsing",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 12,
-    title: "E-Commerce Dashboard",
-    description:
-      "An interactive dashboard built with React for managing orders and customers in an e-commerce platform. It shows visits, sales, profits, recent orders with payment status, and recent customer activity in a clean layout.",
-    tags: ["REACT", "CSS", "JAVASCRIPT"],
-    image: "dashboard2",
-    imageAlt: "E-commerce admin dashboard with orders and statistics",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 13,
-    title: "Digital Clock",
-    description:
-      "A simple web project representing a digital clock that shows the current time, developed using HTML, CSS, and JavaScript.",
-    tags: ["HTML", "CSS", "JAVASCRIPT"],
-    image: "clock",
-    imageAlt: "Web-based digital clock project",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 14,
-    title: "Online Store",
-    description:
-      "A responsive online store for purchasing computers with online payment integration via bank cards. Developed using React, Tailwind CSS, and Laravel.",
-    tags: ["REACT", "TAILWIND", "LARAVEL"],
-    image: "store",
-    imageAlt: "Responsive computer store with online payment system",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 15,
-    title: "Healthy Food",
-    description:
-      "A responsive website for a restaurant that provides healthy eating tips and menu options, designed with HTML, CSS, and JavaScript.",
-    tags: ["HTML", "CSS", "JAVASCRIPT"],
-    image: "healthy-food",
-    imageAlt: "Restaurant website promoting healthy food options",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 16,
-    title: "Social App",
-    description:
-      "A responsive social networking app that allows users to connect, share updates, photos, and send messages. Built with HTML, CSS, and JavaScript.",
-    tags: ["HTML", "CSS", "JAVASCRIPT"],
-    image: "social-app",
-    imageAlt: "Social networking app interface",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 17,
-    title: "Lays Website",
-    description:
-      "A responsive promotional website for Lays snacks showcasing flavors, promotions, and latest products, designed using HTML, CSS, and JavaScript.",
-    tags: ["HTML", "CSS", "JAVASCRIPT"],
-    image: "lays",
-    imageAlt: "Promotional website for Lays snacks with product showcase",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 18,
-    title: "Ice Cream Shop",
-    description:
-      "A responsive website for an ice cream shop featuring delicious flavors, seasonal specials, and online ordering. Designed with HTML, CSS, and React.",
-    tags: ["HTML", "CSS", "REACT"],
-    image: "ice-cream",
-    imageAlt: "Ice cream shop website with flavors and online ordering",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
-  {
-    id: 19,
-    title: "Online Education Platform",
-    description:
-      "A responsive online education platform offering interactive courses, tutorials, and certifications. Built with HTML, CSS, and React.",
-    tags: ["HTML", "CSS", "REACT"],
-    image: "online-education",
-    imageAlt: "Online education website with courses and tutorials",
-    liveLink: "",
-    githubLink: "",
-    featured: false,
-  },
-
 ];
-
 
 const Projects = () => {
   const [showAll, setShowAll] = useState(false);
