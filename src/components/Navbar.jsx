@@ -21,7 +21,7 @@ export default function Navbar({ activeSection }) {
   return (
     <header className="site-header">
       <div className="shell nav-inner">
-        <a href="#home" className="wordmark" aria-label="Omar Mosa home" onClick={() => setOpen(false)}>omar<span>mosa</span><i>.</i></a>
+        <a href="#home" className="wordmark" aria-label="Omar Mosa home" onClick={() => setOpen(false)}>OMAR<span>MOSA</span><i>.</i></a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {links.map(([id, label]) => <a key={id} href={'#' + id} className={activeSection === id ? 'active' : ''} aria-current={activeSection === id ? 'location' : undefined}>{label}</a>)}
         </nav>
